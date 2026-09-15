@@ -118,3 +118,16 @@ $breakpoints: (
     display: none;
   }
 }
+
+// Two-plate offset-print misregistration: a faint duplicate outline in the
+// alarm and signal inks, nudged a couple of degrees off-register in opposite
+// directions -- the flaw a cheap print run leaves when the plates don't line
+// up. Offset is in `em` so it scales with the huge display headlines this is
+// meant for instead of looking like noise at small sizes or nothing at large
+// ones. Uses `currentColor`-independent inks on purpose: the drift reads as
+// a printing flaw regardless of what state color the headline itself is in.
+@mixin misprint($offset: 0.03em) {
+  text-shadow:
+    $offset (-$offset) 0 rgba($alarm, 0.5),
+    (-$offset) $offset 0 rgba($signal, 0.4);
+}

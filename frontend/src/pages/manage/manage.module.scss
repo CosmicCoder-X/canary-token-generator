@@ -25,6 +25,8 @@
 }
 
 .hero {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: $space-3;
@@ -33,6 +35,20 @@
 
   @include breakpoint-up('md') {
     padding-block-start: $space-10;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-block-start: -10%;
+    inset-inline-end: 0;
+    inline-size: min(340px, 60%);
+    block-size: 220px;
+    background-image: $halftone-dots;
+    background-size: 6px 6px;
+    opacity: 0.4;
+    mask-image: radial-gradient(circle at 75% 25%, black, transparent 68%);
+    pointer-events: none;
   }
 }
 
@@ -71,6 +87,7 @@
 }
 
 .headline {
+  position: relative;
   font-family: $font-display;
   font-size: clamp(2.25rem, 8vw, 6rem);
   letter-spacing: -0.035em;
@@ -78,6 +95,7 @@
   text-transform: uppercase;
   color: $ink;
   margin: 0;
+  @include misprint(0.025em);
 
   &[data-state='live'] {
     color: $alarm;

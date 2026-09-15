@@ -6,6 +6,7 @@
 import { Suspense } from 'react'
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary'
 import { Outlet } from 'react-router-dom'
+import { RegistrationMarks } from '@/components'
 
 function ShellErrorFallback({ error }: FallbackProps): React.ReactElement {
   // `error` is `unknown` here -- a thrown value is never guaranteed to be an
@@ -20,6 +21,7 @@ function ShellErrorFallback({ error }: FallbackProps): React.ReactElement {
 export function Shell(): React.ReactElement {
   return (
     <ErrorBoundary FallbackComponent={ShellErrorFallback}>
+      <RegistrationMarks />
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>

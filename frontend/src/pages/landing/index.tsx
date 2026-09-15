@@ -78,7 +78,7 @@ export function Component(): React.ReactElement {
 
   return (
     <div className={styles.page}>
-      <Strip>
+      <Strip border="masthead">
         <StripItem label={PAGE_COPY.STRIP_FIELD_STATION}>canary</StripItem>
         <StripItem label={PAGE_COPY.STRIP_VOLUME}>2026·05</StripItem>
         <StripItem label={PAGE_COPY.STRIP_ISSUE} inverted>

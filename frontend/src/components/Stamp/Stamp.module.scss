@@ -1,0 +1,49 @@
+// ===================
+// ©AngelaMos | 2026
+// Stamp.module.scss
+// ===================
+
+@use '../../styles/tokens' as *;
+@use '../../styles/fonts' as *;
+
+.stamp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  inline-size: 96px;
+  block-size: 96px;
+  padding: $space-2;
+  border-radius: $radius-full;
+
+  // The `double` border style draws two concentric rings from one
+  // declaration -- the cheapest way to get an authentic ink-stamp edge.
+  border: 3px double $alarm;
+  transform: rotate(var(--stamp-rotate));
+  font-family: $font-mono;
+  text-align: center;
+  color: $alarm-deep;
+  mix-blend-mode: multiply;
+  user-select: none;
+
+  &[data-tone='ink'] {
+    border-color: $ink;
+    color: $ink;
+  }
+}
+
+.label {
+  font-size: $font-size-2xs;
+  font-weight: $font-weight-semibold;
+  letter-spacing: $tracking-wider;
+  text-transform: uppercase;
+  line-height: $line-height-tight;
+}
+
+.sublabel {
+  font-size: 9px;
+  letter-spacing: $tracking-wide;
+  text-transform: uppercase;
+  opacity: 0.85;
+}

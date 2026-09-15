@@ -21,6 +21,7 @@ import {
   SerialBar,
   SpecimenCard,
   SpecimenCardSection,
+  Stamp,
   Strip,
   StripItem,
 } from '@/components'
@@ -90,7 +91,7 @@ function ManageView({
   const { token, events, events_total, events_silenced_active, page } = data
   return (
     <div className={styles.page}>
-      <Strip>
+      <Strip border="masthead">
         <StripItem label="FIELD STATION">canary</StripItem>
         <StripItem label="SECTION">dossier</StripItem>
         <StripItem label="SPECIES" inverted>
@@ -176,10 +177,24 @@ function DossierCard({
   eventsTotal,
   silenced,
 }: DossierCardProps): React.ReactElement {
+  // The stamp is a consequence of state, not decoration for its own sake --
+  // it appears exactly when this specimen has actually caught something,
+  // same condition DossierHero uses to pick the "live" headline.
+  const tripped = token.enabled && eventsTotal > 0
   return (
     <SpecimenCard
       tag={`SN · ${token.id}`}
       serial={<SerialBar value={token.id} prefix="SN" />}
+      stamp={
+        tripped ? (
+          <Stamp
+            label="tripped"
+            sublabel={
+              token.last_triggered ? formatTs(token.last_triggered) : undefined
+            }
+          />
+        ) : undefined
+      }
     >
       <SpecimenCardSection label="STATUS">
         <DataRow label="armed">
@@ -337,7 +352,7 @@ function DeleteSection({
 function ManageLoading(): React.ReactElement {
   return (
     <div className={styles.page}>
-      <Strip>
+      <Strip border="masthead">
         <StripItem label="FIELD STATION">canary</StripItem>
         <StripItem label="STATUS">loading dossier…</StripItem>
       </Strip>
@@ -349,7 +364,7 @@ function ManageLoading(): React.ReactElement {
 function ManageNotFound(): React.ReactElement {
   return (
     <div className={styles.page}>
-      <Strip>
+      <Strip border="masthead">
         <StripItem label="FIELD STATION">canary</StripItem>
         <StripItem label="STATUS" inverted>
           unfound
@@ -374,7 +389,7 @@ type ManageErrorProps = {
 function ManageError({ onRetry }: ManageErrorProps): React.ReactElement {
   return (
     <div className={styles.page}>
-      <Strip>
+      <Strip border="masthead">
         <StripItem label="FIELD STATION">canary</StripItem>
         <StripItem label="STATUS" inverted>
           archive offline

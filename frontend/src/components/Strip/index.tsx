@@ -8,7 +8,10 @@ import styles from './Strip.module.scss'
 
 type StripProps = PropsWithChildren<{
   align?: 'left' | 'split'
-  border?: 'bottom' | 'top' | 'both' | 'none'
+  /** 'masthead' pairs the usual hairline with a second, fainter rule a few
+   * pixels below it -- an old-newspaper double-rule, reserved for the strip
+   * that opens a page. */
+  border?: 'bottom' | 'top' | 'both' | 'none' | 'masthead'
 }>
 
 export function Strip({

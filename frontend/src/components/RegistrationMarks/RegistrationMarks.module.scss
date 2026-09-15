@@ -1,0 +1,74 @@
+// ===================
+// ©AngelaMos | 2026
+// RegistrationMarks.module.scss
+// ===================
+
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.marks {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  // A print-shop framing flourish earns its keep on a real sheet of
+  // viewport; on a phone the corners are the only room the form has.
+  display: none;
+
+  @include breakpoint-up('sm') {
+    display: block;
+  }
+}
+
+.mark {
+  position: absolute;
+  inline-size: 16px;
+  block-size: 16px;
+  border: $hairline solid $rule-soft;
+  border-radius: $radius-full;
+  opacity: 0.55;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    background-color: $rule-soft;
+  }
+
+  // vertical tick
+  &::before {
+    inset-inline-start: 50%;
+    inset-block: -5px;
+    inline-size: $hairline;
+    transform: translateX(-50%);
+  }
+
+  // horizontal tick
+  &::after {
+    inset-block-start: 50%;
+    inset-inline: -5px;
+    block-size: $hairline;
+    transform: translateY(-50%);
+  }
+}
+
+.tl {
+  inset-block-start: $space-4;
+  inset-inline-start: $space-4;
+}
+
+.tr {
+  inset-block-start: $space-4;
+  inset-inline-end: $space-4;
+}
+
+.bl {
+  inset-block-end: $space-4;
+  inset-inline-start: $space-4;
+}
+
+.br {
+  inset-block-end: $space-4;
+  inset-inline-end: $space-4;
+}

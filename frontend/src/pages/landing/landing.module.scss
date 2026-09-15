@@ -25,6 +25,8 @@
 }
 
 .hero {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: $space-3;
@@ -34,9 +36,28 @@
   @include breakpoint-up('md') {
     padding-block-start: $space-10;
   }
+
+  // A halftone wash bleeding in from the top-right, faded via a radial
+  // mask so it reads as texture behind the masthead rather than noise
+  // competing with it -- the token comment on $halftone-dots calls this
+  // out as a "tonal patch" use case; this is that use case.
+  &::before {
+    content: '';
+    position: absolute;
+    inset-block-start: -10%;
+    inset-inline-end: 0;
+    inline-size: min(340px, 60%);
+    block-size: 220px;
+    background-image: $halftone-dots;
+    background-size: 6px 6px;
+    opacity: 0.4;
+    mask-image: radial-gradient(circle at 75% 25%, black, transparent 68%);
+    pointer-events: none;
+  }
 }
 
 .headline {
+  position: relative;
   font-family: $font-display;
   font-size: clamp(3rem, 11vw, 8.5rem);
   letter-spacing: -0.04em;
@@ -44,6 +65,7 @@
   color: $ink;
   margin: 0;
   text-transform: uppercase;
+  @include misprint(0.028em);
 }
 
 .latin {

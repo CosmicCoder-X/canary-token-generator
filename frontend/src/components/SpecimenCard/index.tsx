@@ -9,6 +9,9 @@ import styles from './SpecimenCard.module.scss'
 type SpecimenCardProps = PropsWithChildren<{
   tag?: ReactNode
   serial?: ReactNode
+  /** A `<Stamp />` (or anything else) pinned to the top-right corner,
+   * overlapping the border -- the "this specimen is live" ink-stamp slot. */
+  stamp?: ReactNode
   tone?: 'paper' | 'ink' | 'alarm'
   dense?: boolean
 }>
@@ -17,6 +20,7 @@ export function SpecimenCard({
   children,
   tag,
   serial,
+  stamp,
   tone = 'paper',
   dense = false,
 }: SpecimenCardProps): React.ReactElement {
@@ -25,6 +29,7 @@ export function SpecimenCard({
       {tag ? <span className={styles.tag}>{tag}</span> : null}
       <div className={styles.body}>{children}</div>
       {serial ? <span className={styles.serial}>{serial}</span> : null}
+      {stamp ? <span className={styles.stampSlot}>{stamp}</span> : null}
     </article>
   )
 }

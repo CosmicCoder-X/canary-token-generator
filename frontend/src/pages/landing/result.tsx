@@ -13,6 +13,7 @@ import {
   SerialBar,
   SpecimenCard,
   SpecimenCardSection,
+  Stamp,
 } from '@/components'
 import { manageRoute } from '@/config'
 import { ArtifactDisplay } from './artifact'
@@ -43,6 +44,7 @@ export function ResultView({
       <SpecimenCard
         tag={`SPECIES // ${token.type.toUpperCase()}`}
         serial={<SerialBar value={token.id} prefix="SN" />}
+        stamp={<Stamp label="specimen" sublabel="released" />}
       >
         <SpecimenCardSection label="DOSSIER">
           <DataRow label="memo">{token.memo || '—'}</DataRow>

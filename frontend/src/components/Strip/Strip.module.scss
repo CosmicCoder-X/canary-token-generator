@@ -31,6 +31,16 @@
     border-block: $hairline solid $rule;
   }
 
+  &[data-border='masthead'] {
+    border-bottom: $hairline-bold solid $rule;
+
+    // The second rule is a box-shadow, not a real border, so it doesn't
+    // consume layout space or need a wrapper element -- it just prints a
+    // few pixels below the real one.
+    box-shadow: 0 4px 0 0 $rule-hair;
+    margin-block-end: $space-1;
+  }
+
   &[data-align='split'] {
     justify-content: space-between;
   }
