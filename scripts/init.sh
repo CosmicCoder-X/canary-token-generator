@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # =============================================================================
 # ©AngelaMos | 2026
-# init.sh
+# init.sh 
 # =============================================================================
 # Idempotent setup helper.
 #   1. Copies .env.example -> .env if .env is missing
